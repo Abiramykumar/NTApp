@@ -1,8 +1,68 @@
-.mat-mdc-form-field{
+/* .mat-mdc-form-field{
     width: 50%;
     margin: 2px;
     
 }
 button{
     margin: 2px;
-}
+} */
+
+/* Ensure the container takes up the full viewport height and center content */
+html, body {
+    height: 100%; /* Ensure html and body cover the full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    overflow: hidden; /* Hide scrollbars */
+  }
+  
+  #mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  /* Center the card within the form */
+  #contactCard {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    width: 100%;
+    height: 100%; /* Ensure it uses the full height of the parent container */
+  }
+  
+  /* Styling for the card */
+  mat-card {
+    width: 100%;
+    max-width: 500px; /* Set a max width if desired */
+    height: auto; /* Ensure the height adjusts based on content */
+    max-height: 90vh; /* Limit the height to 90% of viewport height */
+    padding: 16px; /* Add padding inside the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Add a shadow for better visual */
+    overflow: hidden; /* Hide any overflow within the card */
+  }
+  
+  /* Ensure form fields take up full width */
+  .myInputs mat-form-field {
+    width: 100%;
+    margin-bottom: 16px; /* Space between fields */
+  }
+  
+  /* Center the action buttons and add space between them */
+  mat-card-footer {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 16px; /* Add space between buttons */
+  }
+  
+  /* Style for buttons */
+  button {
+    align-items: center;
+  }
+  
+  /* Optional: Style for links to look like buttons */
+  a[mat-raised-button] {
+    text-decoration: none; /* Remove underline from link */
+  }
+  

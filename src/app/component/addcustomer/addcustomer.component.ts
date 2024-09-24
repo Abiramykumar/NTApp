@@ -15,47 +15,76 @@ import { getEditdata } from '../../_store/Customer/Customer.Selector';
   styleUrl: './addcustomer.component.css'
 })
 export class AddcustomerComponent implements OnInit {
-  editcode = '';
-  pagetitle = 'Add Customer';
-  constructor(private builder: FormBuilder, private store: Store, private actroute: ActivatedRoute) {
+  editcode = 'id';
+  pagetitle = 'Add Contact';
+  constructor(private  builder: FormBuilder, private store: Store, private actroute: ActivatedRoute) {
 
   }
   ngOnInit(): void {
-    this.editcode = this.actroute.snapshot.paramMap.get('code') as string;
+    this.editcode = this.actroute.snapshot.paramMap.get('id') as string;
+    console.log("editcode",this.editcode)
     if (this.editcode != null && this.editcode != '') {
-      this.pagetitle = 'Edit customer';
-      this.myform.controls.code.disable();
-      this.store.dispatch(getCustomer({code:this.editcode}))
-      this.store.select(getEditdata).subscribe(item => {
-        this.myform.setValue({ code: item.code, name: item.name, email: item.email, phone: item.phone });
+      this.pagetitle = 'Edit contact';
+      this.myform.controls.id.disable();
+      this.store.dispatch(getCustomer({id:this.editcode}))
+      this.store.select(getEditdata).subscribe((item:any) => {
+        console.log("sdf", item);
+        this.myform.setValue({ id: item.id, name: item.name, email: item.email, phoneNumber: item.phoneNumber, address: item.address });
       });
     }
   }
+
   myform = this.builder.group({
-    code: this.builder.control('', Validators.required),
+    id: this.builder.control('', Validators.required),
     name: this.builder.control('', Validators.required),
     email: this.builder.control('', Validators.required),
-    phone: this.builder.control('', Validators.required)
+    phoneNumber: this.builder.control('', Validators.required),
+    address: this.builder.control('', Validators.required)
   })
 
   Savecustomer() {
     if (this.myform.valid) {
       const _obj: Customer = {
-        code: this.myform.value.code as string,
-        name: this.myform.value.name as string,
-        email: this.myform.value.email as string,
-        phone: this.myform.value.phone as string,
+        Id: this.myform.value.id as string,
+        Name: this.myform.value.name as string,
+        Email: this.myform.value.email as string,
+        PhoneNumber: this.myform.value.phoneNumber as string,
+        Address: this.myform.value.address as string,
       }
       console.log(_obj);
       if(this.editcode!=null && this.editcode!=''){
-        _obj.code=this.editcode;
+        _obj.Id=this.editcode;
         this.store.dispatch(updateCustomer({ inputdata: _obj }));
       }else{
         this.store.dispatch(addCustomer({ inputdata: _obj }));
       }
-     
-
     }
 
   }
 }
+
+// Savecustomer() {
+//   if (this.myform.valid) {
+//     // Create a base object without the Id
+//     const _obj: Partial<Customer> = {
+//       Name: this.myform.value.name as string,
+//       Email: this.myform.value.email as string,
+//       PhoneNumber: this.myform.value.phoneNumber as string,
+//       Address: this.myform.value.address as string,
+//     };
+
+//     console.log('Payload before adding ID (if necessary):', _obj);
+
+//     // If you're editing (not adding), include the Id in the payload
+//     if (this.editcode != null && this.editcode !== '') {
+//       _obj.Id = this.editcode;
+//       this.store.dispatch(updateCustomer({ inputdata: _obj as Customer })); // Cast it to Customer since Id is added
+//     } else {
+//       // Dispatch action without Id for adding a new customer
+//       this.store.dispatch(addCustomer({ inputdata: _obj as Customer }));
+//     }
+//   } else {
+//     console.log('Form is invalid:', this.myform.errors);
+//   }
+// }
+// }

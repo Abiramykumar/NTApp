@@ -29,7 +29,7 @@ export class CustomerEffects {
     this.action$.pipe(
         ofType(getCustomer),
         exhaustMap((action) => {
-            return this.service.GetCustomerbycode(action.code).pipe(
+            return this.service.GetCustomerbycode(action.id).pipe(
                 map((data) => {
                     return getCustomerSuccess({ obj: data })
                 }),
@@ -71,9 +71,9 @@ export class CustomerEffects {
         this.action$.pipe(
             ofType(deleteCustomer),
             switchMap((action) => {
-                return this.service.DeleteCustomer(action.code).pipe(
+                return this.service.DeleteCustomer(action.id).pipe(
                     switchMap(() => {
-                        return of(deleteCustomerSuccess({code:action.code}), showAlert({ message: 'Removed successfully', resptype: 'pass' }))
+                        return of(deleteCustomerSuccess({id:action.id}), showAlert({ message: 'Removed successfully', resptype: 'pass' }))
                     }),
                     catchError((_err) => of(showAlert({ message: 'Failed to delete', resptype: 'fail' })))
                 )

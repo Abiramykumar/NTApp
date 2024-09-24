@@ -25,9 +25,9 @@ export class CutomerComponent implements OnInit {
   }
   customerdata!: Customer[];
   datasource: any;
-  displayColums: string[] = ['code', 'name', 'email', 'phone', 'action'];
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  displayColums: string[] = ['id', 'name', 'email', 'phoneNumber', 'action', 'address'];
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
     this.LoadInitialData();
   }
@@ -37,19 +37,19 @@ export class CutomerComponent implements OnInit {
     this.store.select(getCutomerList).subscribe(item => {
       this.customerdata = item;
       this.datasource = new MatTableDataSource(this.customerdata);
-      this.datasource.paginator = this.paginator;
-      this.datasource.sort = this.sort;
+      // this.datasource.paginator = this.paginator;
+      // this.datasource.sort = this.sort;
     })
   }
 
-  deletecustomer(code: string) {
+  deletecustomer(id: string) {
     if (confirm("do you want to remove?")) {
-      this.store.dispatch(deleteCustomer({ code: code }));
+      this.store.dispatch(deleteCustomer({ id: id }));
     }
   }
 
-  editcustomer(code: string) {
-    this.router.navigateByUrl('/customer/edit/'+code);
+  editcustomer(id: string) {
+    this.router.navigateByUrl('/customer/edit/'+id);
   }
 
 }

@@ -24,7 +24,7 @@ export const loadCustomer = createAction(LOAD_CUSTOMER)
 export const loadCustomerSuccess = createAction(LOAD_CUSTOMER_SUCCESS, props<{ list: Customer[] }>())
 export const loadCustomerFail = createAction(LOAD_CUSTOMER_FAIL, props<{ errormessage: string }>())
 
-export const getCustomer = createAction(GET_CUSTOMER, props<{ code: string }>())
+export const getCustomer = createAction(GET_CUSTOMER, props<{ id: string }>())
 export const getCustomerSuccess = createAction(GET_CUSTOMER_SUCCESS, props<{ obj: Customer }>())
 
 
@@ -34,8 +34,8 @@ export const addCustomerSuccess = createAction(ADD_CUSTOMER_SUCCESS)
 export const updateCustomer = createAction(UPDATE_CUSTOMER, props<{ inputdata: Customer }>())
 export const updateCustomerSuccess = createAction(UPDATE_CUSTOMER_SUCCESS)
 
-export const deleteCustomer = createAction(DELETE_CUSTOMER, props<{ code: string }>())
-export const deleteCustomerSuccess = createAction(DELETE_CUSTOMER_SUCCESS, props<{ code: string }>())
+export const deleteCustomer = createAction(DELETE_CUSTOMER, props<{ id: string }>())
+export const deleteCustomerSuccess = createAction(DELETE_CUSTOMER_SUCCESS, props<{ id: string }>())
 
 export const showAlert = createAction(SHOW_ALERT, props<{ message: string, resptype: string }>())
 export const emptyAction = createAction('emptyaction')

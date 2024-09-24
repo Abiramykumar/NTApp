@@ -1,23 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
-import { authGuard } from './_service/auth.guard';
-import { SliderComponent } from './component/slider/slider.component';
+import { CutomerComponent } from './component/cutomer/cutomer.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: CutomerComponent },
     {
-        path: 'customer', loadComponent: () => import('./component/cutomer/cutomer.component').then(m => m.CutomerComponent),
-        canActivate: [authGuard]
+        path: 'customer', 
+        loadComponent: () => import('./component/cutomer/cutomer.component').then(m => m.CutomerComponent),
     },
     {
-        path: 'customer/add', loadComponent: () => import('./component/addcustomer/addcustomer.component').then(m => m.AddcustomerComponent),
-        canActivate: [authGuard]
+        path: 'customer/add', 
+        loadComponent: () => import('./component/addcustomer/addcustomer.component').then(m => m.AddcustomerComponent),
     },
     {
-        path: 'customer/edit/:code', loadComponent: () => import('./component/addcustomer/addcustomer.component').then(m => m.AddcustomerComponent),
-        canActivate: [authGuard]
+        path: 'customer/edit/:id', 
+        loadComponent: () => import('./component/addcustomer/addcustomer.component').then(m => m.AddcustomerComponent),
     },
-    {
-        path:'slider',component:SliderComponent
-    }
 ];

@@ -1,8 +1,9 @@
 export interface Customer{
-    code:string;
-    name:string;
-    email:string;
-    phone:string;
+    Id:string;
+    Name:string;
+    Email:string;
+    PhoneNumber:string;
+    Address:string;
 }
 
 export interface CustomerModel{

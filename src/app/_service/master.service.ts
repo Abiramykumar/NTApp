@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Posts } from '../../_model/posts';
 import { Customer } from '../../_model/Customer';
@@ -7,37 +7,36 @@ import { Customer } from '../../_model/Customer';
   providedIn: 'root'
 })
 export class MasterService {
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true // Include credentials in the request
+  };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-  }
-
-  getall() {
-    return this.http.get<Posts[]>('http://localhost:3000/posts');
-  }
+  // getall() {
+  //   return this.http.get<Posts[]>('http://localhost:3000/posts');
+  // }
 
   GetAllCustomer() {
-    return this.http.get<Customer[]>('https://localhost:7143/api/Customer/GetAll');
+    return this.http.get<Customer[]>('http://localhost:5187/api/test', this.httpOptions);
   }
-  
 
-  GetCustomerbycode(code:string) {
-    return this.http.get<Customer>('https://localhost:7143/api/Customer/Getbycode?code='+code);
+  GetCustomerbycode(id: string) {
+    return this.http.get<Customer>('http://localhost:5187/api/test/' + id, this.httpOptions);
   }
 
   CreateCustomer(customer: Customer) {
-    return this.http.post('https://localhost:7143/api/Customer/Create', customer);
+    return this.http.post('http://localhost:5187/api/test', customer, this.httpOptions);
   }
+
   UpdateCustomer(customer: Customer) {
-    return this.http.put('https://localhost:7143/api/Customer/Update?code='+customer.code, customer);
+    return this.http.put('http://localhost:5187/api/test/' + customer.Id, customer, this.httpOptions);
   }
-  DeleteCustomer(code:string) {
-    return this.http.delete('https://localhost:7143/api/Customer/Remove?code='+code);
+  
+  DeleteCustomer(id: string) {
+    return this.http.delete('http://localhost:5187/api/test/' + id, this.httpOptions);
   }
-
-
-
-
 
   haveaccess() {
     return true;

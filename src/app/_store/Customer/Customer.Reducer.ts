@@ -10,10 +10,11 @@ const _CustomerReducer = createReducer(customerState,
             list: action.list,
             errormessage: '',
             editdata:{
-                code: "",
-                name: "",
-                email: "",
-                phone: ""
+                Id: "",
+                Name: "",
+                Email: "",
+                PhoneNumber: "",
+                Address:""
             }
         }
     }),
@@ -32,7 +33,7 @@ const _CustomerReducer = createReducer(customerState,
         }
     }),
     on(deleteCustomerSuccess, (state, action) => {
-        let _newdata=state.list.filter(o=>o.code!=action.code);
+        let _newdata=state.list.filter(o=>o.Id!=action.id);
         return {
             ...state,
             list: _newdata,

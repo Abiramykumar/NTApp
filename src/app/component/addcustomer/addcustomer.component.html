@@ -1,12 +1,12 @@
-<form [formGroup]="myform" (ngSubmit)="Savecustomer()">
+<!-- <form [formGroup]="myform" (ngSubmit)="Savecustomer()">
     <mat-card>
         <mat-card-header>
             <h1>{{pagetitle}}</h1>
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
-                <mat-label>Code</mat-label>
-                <input matInput formControlName="code"  />
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id"  />
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Name</mat-label>
@@ -17,8 +17,12 @@
                 <input matInput formControlName="email" />
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Phone</mat-label>
-                <input matInput formControlName="phone" />
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phonenumber" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" />
             </mat-form-field>
         </mat-card-content>
         <mat-card-footer>
@@ -26,4 +30,47 @@
             <a routerLink="/customer" mat-raised-button color="accent">Close</a>
         </mat-card-footer>
     </mat-card>
-</form>
+</form> -->
+
+<div id="mainContent">
+    <h1>{{pagetitle}}</h1>
+
+    <div id="contactCard">
+        <form [formGroup]="myform" (ngSubmit)="Savecustomer()" class="myform">
+            <mat-card>
+                <mat-card-content>
+                    <div class="myInputs">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Id</mat-label>
+                            <input matInput formControlName="id" />
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" />
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput formControlName="phoneNumber" />
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address" />
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-footer>
+                    <button type="submit" mat-raised-button color="primary">Save</button>
+                    <a routerLink="/customer" mat-raised-button color="accent">Close</a>
+                </mat-card-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

@@ -4,9 +4,10 @@ export const customerState: CustomerModel = {
     list: [],
     errormessage: '',
     editdata:{
-        code: "",
-        name: "",
-        email: "",
-        phone: ""
+        Id: "",
+        Name: "",
+        Email: "",
+        PhoneNumber: "",
+        Address:""
     }
 }
